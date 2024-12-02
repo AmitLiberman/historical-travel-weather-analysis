@@ -15,7 +15,7 @@ metrics = {
 async def track_metrics(request: Request, call_next):
     route = request.url.path
     if route not in metrics:
-        return await call_next(request)  # Skip if not a tracked route
+        return await call_next(request)
 
     start_time = time.time()
     metrics[route]["hits"] += 1
