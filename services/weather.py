@@ -74,3 +74,10 @@ class WeatherService:
         monthly_averages['total_diff'] = monthly_averages['max_temp_diff'] + monthly_averages['min_temp_diff']
 
         return monthly_averages
+
+    def calculate_average_temps(self, weather_data, month):
+        max_temp_avg, min_temp_avg = self.average_month_temperature(weather_data,month)
+        return {
+            "min_temp_avg": round(min_temp_avg, 2),
+            "max_temp_avg": round(max_temp_avg, 2),
+        }
