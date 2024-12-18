@@ -9,6 +9,7 @@ class WeatherService:
                  longitude: float | list[float],
                  start_date: datetime = datetime(2018, 1, 1),
                  end_date: datetime = datetime(2023, 12, 31)):
+
         self.weather_url = "https://archive-api.open-meteo.com/v1/archive"
         self.latitude = [latitude] if isinstance(latitude, float) else latitude
         self.longitude = [longitude] if isinstance(longitude, float) else longitude
@@ -16,7 +17,9 @@ class WeatherService:
         self.end_date = end_date
 
     async def fetch_weather_data(self):
-        """Fetches historical weather data for a given location."""
+        """
+        Fetches historical weather data for a given location.
+        """
         params = {
             "latitude": self.latitude,
             "longitude": self.longitude,
@@ -31,7 +34,9 @@ class WeatherService:
 
     @staticmethod
     def average_month_temperature(data: dict, month: int):
-        """Calculates average max and min temperatures for a given month."""
+        """
+        Calculates average max and min temperatures for a given month.
+        """
         df = pd.DataFrame(data['daily'])
         df['time'] = pd.to_datetime(df['time'])
         month_data = df[df["time"].dt.month == month]
